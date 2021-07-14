@@ -1,0 +1,34 @@
+
+.filmglobal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+}
+.comment {
+    
+    
+    display: flex;
+    justify-content: center;
+    
+}
+.comment textarea {
+    width: 120vh;
+}
+h5{
+    text-align: center;
+}
+.commentaire {
+   
+    border-style: solid;
+    margin-left: 150px;
+    margin-right: 150px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.button {
+    margin-left: 600px;
+    margin-bottom: 20px;
+}
+
