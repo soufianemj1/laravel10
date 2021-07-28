@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Film;
+use App\Models\Comment;
 
 class FilmsController extends Controller
 {
@@ -15,7 +16,8 @@ class FilmsController extends Controller
     public function index()
     {
         $films = Film::all();
-        dd($films);
+        return view('home',['films'=>$films]);
+        
     }
 
     /**php arti
@@ -36,7 +38,14 @@ class FilmsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $films= new film();
+        $films->name=$request->titre;
+        $films->image=$request->photo;
+        
+        
+        $films->save();
+        return redirect("adminfilms");
+        
     }
 
     /**
@@ -45,9 +54,13 @@ class FilmsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Film $id)
     {
-        //
+        $comments=Comment::where("film_id",$id->id)->get();
+
+        
+        return view('singlefilm')->with('singlefilm',$id)->with('comment',$comments);
+        
     }
 
     /**
@@ -58,7 +71,9 @@ class FilmsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $film=Film::find($id);
+       
+        return view('films.editfilms')->with('film',$film);
     }
 
     /**
@@ -70,7 +85,11 @@ class FilmsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $upd=Film::find($request->id);
+        $upd->name=$request->titre;
+        $upd->image=$request->photo;
+        $upd->update();
+        return redirect(route('adminfilms'));
     }
 
     /**
@@ -81,6 +100,17 @@ class FilmsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $film=Film::find($id);
+        $film->delete();
+        return back();
+    }
+    public function admin(){
+        return view("films.admin");
+    }
+    public function adminfilms()
+    {
+        $films = Film::all();
+        return view('films.admincrud',['films'=>$films]);
+        
     }
 }

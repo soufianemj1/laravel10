@@ -16,8 +16,17 @@
 <div id="titre">
 <H3>{{$film->name}}</H3>
 
-<a href="{{route('singlefilm',$film->id)}}">voir</a>
+
 </div>
+
+
+<div class="actions">
+    <a href={{"delete/".$film->id}}>Supprimer</a>
+    <a href={{"edit/".$film->id}}>modifier</a>
+
+
+</div>
+
 
 </div>
 </div>

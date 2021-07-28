@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Comment;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+
 
 class CommentsController extends Controller
 {
@@ -13,7 +15,7 @@ class CommentsController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -34,7 +36,12 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $comment= new Comment();
+        $comment->comment=$request->usercomment;
+        $comment->user_id=Auth::user()->id;
+        $comment->film_id=$request->filmid;
+        $comment->save();
+        return redirect()->back();
     }
 
     /**

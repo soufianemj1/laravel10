@@ -18,7 +18,6 @@ class CreateFilmsTable extends Migration
             $table->timestamps();
             $table->string("image");
             $table->string("name");
-            
         });
     }
 

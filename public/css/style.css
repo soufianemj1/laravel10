@@ -31,4 +31,14 @@ h5{
     margin-left: 600px;
     margin-bottom: 20px;
 }
-
+.singleimg{
+text-align: center;
+}
+.commenter{
+    
+    display: flex;
+    justify-content: center;
+}
+.commenter textarea {
+    width: 600px;
+}

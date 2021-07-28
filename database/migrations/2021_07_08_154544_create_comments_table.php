@@ -17,8 +17,12 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string("comment");
-            $table->integer("user_id");
-            $table->integer("film_id");
+            // $table->integer("user_id");
+            // $table->integer("film_id");
+            $table->foreignId("film_id")->constrained()->onDelete('cascade');
+            $table->foreignId("user_id")->constrained()->onDelete('cascade');;
+
+            
         });
     }
 
